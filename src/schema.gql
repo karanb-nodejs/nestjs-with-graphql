@@ -1,0 +1,52 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Author {
+  _id: ID!
+  name: String!
+  email: String!
+  phone: String!
+  country: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Query {
+  authors: [Author!]!
+  author(params: FindAuthorInput!): Author!
+}
+
+input FindAuthorInput {
+  _id: String
+  name: String
+  email: String
+  phone: String
+  country: String
+}
+
+type Mutation {
+  createAuthor(params: CreateAuthorInput!): Author!
+  updateAuthor(id: String!, params: UpdateAuthorInput!): Author!
+  deleteAuthor(id: String!): Author!
+}
+
+input CreateAuthorInput {
+  name: String!
+  email: String!
+  phone: String!
+  country: String!
+}
+
+input UpdateAuthorInput {
+  name: String!
+  email: String!
+  phone: String!
+  country: String!
+  bookIds: [ID!]
+}

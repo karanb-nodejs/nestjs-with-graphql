@@ -5,17 +5,21 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver } from '@nestjs/apollo';
 import { join } from 'path';
+import { AuthorsModule } from './authors/authors.module';
+import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
 
 @Module({
   imports: [
     MongooseModule.forRoot('mongodb://localhost/', {
-      dbName: 'test',
+      dbName: 'graphql',
     }),
     GraphQLModule.forRoot({
       driver: ApolloDriver,
-      playground: true,
+      playground: false,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      plugins: [ApolloServerPluginLandingPageLocalDefault()],
     }),
+    AuthorsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
